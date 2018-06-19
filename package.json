@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "node fixAngularCrypto.js"
   },
   "private": true,
   "dependencies": {
@@ -21,8 +22,12 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "binance-api-client": "^2.6.0",
+    "buffer": "^5.1.0",
     "core-js": "^2.5.4",
+    "events": "^3.0.0",
     "rxjs": "^6.0.0",
+    "stream": "0.0.2",
+    "timers": "^0.1.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
