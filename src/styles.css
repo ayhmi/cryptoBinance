@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import "/assets/global/plugins/bootstrap/css/bootstrap.min.css";
+@import "/assets/global/css/components.min.css";
+@import "/assets/global/css/plugins.min.css";
+@import "/assets/layouts/layout/css/layout.min.css";
+@import "/assets/layouts/layout/css/themes/darkblue.min.css";
+@import "/assets/layouts/layout/css/custom.min.css";
