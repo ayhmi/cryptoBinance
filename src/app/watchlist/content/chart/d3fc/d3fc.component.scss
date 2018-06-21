@@ -1,0 +1,113 @@
+$blue: #1A9AF9;
+$gray: #444;
+
+.mp-chart {
+  width: calc(100% - 62px);
+  height: calc(100% - 30px);
+  overflow: visible !important;
+
+  .mp-svg-red {
+    fill: rgba(250, 0, 39, 0.2);
+    stroke: rgba(250, 0, 39, 0.2);
+  }
+
+  .mp-svg-green {
+    fill: rgba(0, 205, 122, 0.2);
+    stroke: rgba(0, 205, 122, 0.2);
+  }
+
+  svg {
+    overflow: visible;
+    display: block;
+  }
+
+  path.area {
+    fill: url(#area-gradient);
+    fill-opacity: 1;
+  }
+
+  path.line {
+    stroke: $blue;
+  }
+
+  .bar > path {
+    fill-opacity: 1;
+  }
+
+  .x-axis text {
+    font-weight: bold;
+  }
+
+  .background {
+    stroke: none;
+    fill: none;
+  }
+
+  .plot-area {
+    overflow: visible;
+  }
+
+  .plot-area > g > g.y:last-child,
+  .y-axis > g.tick:nth-last-child(2) {
+    display: none;
+  }
+
+  .annotation.close line {
+    display: none;
+  }
+
+  .annotation text {
+    fill: white;
+  }
+
+  .annotation.close path {
+    fill: $blue;
+  }
+
+  .gridline,
+  .axis .domain,
+  .axis .tick line {
+    stroke: #DDD;
+  }
+
+  .label {
+    color: black;
+    text-align: right;
+    display: inline-block;
+  }
+
+  .value {
+    margin-right: 10px;
+  }
+
+  .crosshair .callout path,
+  .crosshair .callout rect,
+  .crosshair .trackball circle {
+    fill: $gray;
+  }
+
+  .crosshair line {
+    stroke: $gray;
+    stroke-dasharray: 3, 3;
+  }
+
+  .crosshair .bottom-handle text {
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  .axis text,
+  .annotation text {
+    font-size: 11px;
+    font-family: inherit;
+    font-weight: 700;
+  }
+
+  .axis .domain {
+    stroke-opacity: 0;
+  }
+}
+
+.mp-chart.small {
+  width: calc(100% - 16px);
+}

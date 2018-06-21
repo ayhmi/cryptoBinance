@@ -1,0 +1,15 @@
+<div class="mp-search-box mp-transition"
+     [ngClass]="{'mp-inactive': !active}">
+  <mdl-icon class="mp-transition pull-left">search</mdl-icon>
+  <input #input
+         type="text"
+         class="mp-transition mdl-textfield__input pull-right"
+         placeholder="Search..."
+         (focus)="activateInput()"
+         [formControl]="formControl">
+  <mdl-icon class="mp-clear mdl-color-text--grey-700"
+            *ngIf="formControl?.value"
+            title="Clear"
+            (click)="clear()">cancel
+  </mdl-icon>
+</div>

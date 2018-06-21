@@ -1,0 +1,45 @@
+<div class="mdl-card__title mdl-card--border">
+  <h4 *ngIf="!stockData.symbol">Chart</h4>
+  <h4 *ngIf="stockData.symbol">
+    <span class="mp-nowrap">{{stockData.name}} ({{stockData.symbol}})</span>
+    <span class="mp-nowrap">
+      <b class="mp-price">
+      <span class="mp-transition"
+            [ngClass]="(watchlistState.highlights$ | async)[stockData.symbol]?.price">{{stockData.priceDisplay}}</span>
+      </b>
+      <span class="mp-change"
+            [ngClass]="stockData.change >= 0 ? 'mdl-color-text--green-A700' : 'mdl-color-text--red'">{{stockData.change}} ({{stockData.percentage}})</span>
+    </span>
+  </h4>
+  <button *ngIf="stock"
+          mdl-button
+          mdl-button-type="icon"
+          class="pull-right"
+          (click)="toggleFavorite(!favorite)">
+    <mdl-icon *ngIf="favorite"
+              title="Remove from Favorites"
+              class="mdl-color-text--amber">star
+    </mdl-icon>
+    <mdl-icon *ngIf="!favorite"
+              title="Add to Favorites">star_bordered
+    </mdl-icon>
+  </button>
+</div>
+<div class="mdl-card__supporting-text">
+  <mdl-tabs *ngIf="stock"
+            mdl-ripple
+            mdl-tab-active-index="{{rangeIndex}}"
+            (mdl-tab-active-changed)="tabChanged($event.index)">
+    <mdl-tab-panel *ngFor="let item of ranges"
+                   mdl-tab-panel-title="{{item.text}}"></mdl-tab-panel>
+  </mdl-tabs>
+  <div class="mp-container">
+    <mp-notification *ngIf="notificationType > 0"
+                     class="mp-cover"
+                     [type]="notificationType"
+                     [value]="notification"
+                     [button]="button"
+                     (action)="notificationAction($event)"></mp-notification>
+    <mp-d3fc></mp-d3fc>
+  </div>
+</div>

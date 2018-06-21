@@ -1,0 +1,26 @@
+:host {
+  .mdl-grid {
+    position: absolute;
+    border: #e5e5e5 1px solid;
+    background: rgba(255, 255, 255, 0.85);
+    margin: 10px 0 0 10px;
+    .mdl-cell {
+      margin: 0;
+      width: auto;
+    }
+
+    .mdl-cell:first-child {
+      .mdl-list {
+        .mdl-list__item {
+          justify-content: flex-end;
+        }
+      }
+    }
+
+    .mdl-list {
+      .mdl-list__item {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<div class="mdl-layout__container">
+  <div class="mdl-layout">
+    <div class="mdl-layout__drawer"
+         [ngClass]="{'mp-inactive':!sidebar}">
+      <mp-sidebar class="mp-sidebar"></mp-sidebar>
+    </div>
+    <div class="mdl-color--grey-100 mdl-layout__content">
+      <mp-content></mp-content>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+@import '../../../../scss/variables';
+
+:host {
+  .mdl-navigation__link {
+    cursor: pointer;
+
+    .mp-prices {
+      position: absolute;
+      right: 10px;
+      b {
+        padding: 0 4px;
+      }
+    }
+
+    .mp-text {
+      width: 130px;
+    }
+
+    .mp-pill {
+      height: 30px;
+      width: 80px;
+      line-height: 30px;
+      text-align: center;
+      margin: 5px 0 0 10px;
+      color: white;
+    }
+  }
+
+  .mdl-navigation__link:hover,
+  .mdl-navigation__link.active {
+    background: $color-hover;
+  }
+
+  .mp-empty {
+    margin: 10px;
+    text-align: center;
+    button {
+      padding-left: 10px;
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .mdl-navigation__link:hover,
+    .mdl-navigation__link.active {
+      background: white;
+    }
+  }
+}

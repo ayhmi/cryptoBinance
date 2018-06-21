@@ -1,0 +1,57 @@
+<div class="mdl-card__title mdl-card--border">
+  <h4>Key Statistics</h4>
+  <button *ngIf="notificationType === 0"
+          class="pull-right mp-settings"
+          mdl-button
+          #btn1="mdlButton"
+          (click)="mdlMenu.toggle($event, btn1)"
+          mdl-button-type="icon">
+    <mdl-icon title="More settings">more_vert</mdl-icon>
+  </button>
+  <mdl-menu #mdlMenu
+            mdl-menu-position="bottom-right">
+    <mdl-menu-item (click)="reload()">Reload</mdl-menu-item>
+  </mdl-menu>
+</div>
+<div class="mdl-card__supporting-text">
+  <mp-notification *ngIf="notificationType > 0"
+                   [type]="notificationType"
+                   [value]="notification"
+                   [button]="button"
+                   (action)="notificationAction($event)"></mp-notification>
+  <div *ngIf="notificationType === 0"
+       class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+      <mdl-list>
+        <mdl-list-item>
+          <mp-range [options]="dayOptions"></mp-range>
+        </mdl-list-item>
+
+        <mdl-list-item>
+          <mp-range [options]="yearOptions"></mp-range>
+        </mdl-list-item>
+      </mdl-list>
+    </div>
+  </div>
+  <div *ngIf="notificationType === 0"
+       class="mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+      <mdl-list>
+        <mdl-list-item class="mp-text"
+                       *ngFor="let info of leftColumn">
+          <p>{{info.text}}</p>
+          <b>{{data[info.id] || 'N/A'}}</b>
+        </mdl-list-item>
+      </mdl-list>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+      <mdl-list>
+        <mdl-list-item class="mp-text"
+                       *ngFor="let info of rightColumn">
+          <p>{{info.text}}</p>
+          <b>{{data[info.id] || 'N/A'}}</b>
+        </mdl-list-item>
+      </mdl-list>
+    </div>
+  </div>
+</div>

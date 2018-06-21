@@ -1,0 +1,46 @@
+.mp-chart {
+  .mdl-card__title {
+    h4 {
+      span:first-child,
+      .mp-price {
+        margin-right: 5px;
+      }
+      .mp-change {
+        font-size: 1rem;
+      }
+    }
+
+    .mp-favorite {
+      .material-icons {
+        position: absolute;
+      }
+    }
+  }
+
+  .mdl-card__supporting-text {
+    height: calc(100% - 44px);
+
+    .mp-container {
+      position: relative;
+      height: 100%;
+    }
+
+    .mdl-tabs__tab-bar {
+      height: auto;
+      .mdl-tabs__tab {
+        height: 30px;
+        line-height: 30px;
+      }
+
+      .mdl-tabs__tab:hover {
+        color: black;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .mdl-tabs__tab {
+      padding: 0 8px;
+    }
+  }
+}

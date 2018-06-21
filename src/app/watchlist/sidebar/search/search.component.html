@@ -1,0 +1,16 @@
+<mp-notification *ngIf="notificationType > 0"
+                 [type]="notificationType"
+                 [value]="notification"
+                 [button]="button"
+                 (action)="notificationAction($event)"></mp-notification>
+<ul *ngIf="notificationType === 0"
+    class="mdl-list mdl-navigation">
+  <li *ngFor="let stock of stocks"
+      class="mdl_list__item mdl-list__item--two-line"
+      (click)="add(stock)">
+      <span class="mdl-list__item-primary-content">
+       <span class="mdl-color-text--black">{{stock.symbol}} - {{stock.name}}</span>
+       <span class="mdl-list__item-sub-title">{{stock.typeDisp}} - {{stock.exchDisp}}</span>
+     </span>
+  </li>
+</ul>

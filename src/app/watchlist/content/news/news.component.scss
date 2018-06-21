@@ -1,0 +1,15 @@
+:host {
+  .mdl-card__supporting-text {
+    overflow: auto;
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 5px 0;
+    }
+
+    .mp-main {
+      margin: 3px 0;
+    }
+  }
+}

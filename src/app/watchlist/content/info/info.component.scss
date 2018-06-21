@@ -1,0 +1,44 @@
+@import '../../../../scss/variables';
+
+:host {
+  .mdl-card__supporting-text {
+    .mdl-grid {
+      .mdl-cell {
+        margin: 0 8px;
+      }
+    }
+    overflow: auto;
+    .mdl-list {
+      .mp-text {
+        border-bottom: $border;
+      }
+      .mdl-list__item {
+        p {
+          font-size: $font-size-small;
+          line-height: 18px;
+        }
+        b {
+          float: right;
+          margin-left: auto;
+          font-size: $font-size-small;
+        }
+      }
+
+      .mdl-list__item:last-child {
+        border: none;
+      }
+    }
+  }
+
+  @media (max-width: 840px) {
+    .mdl-card__supporting-text {
+      .mdl-cell--6-col:first-child {
+        .mdl-list {
+          .mdl-list__item:last-child {
+            border-bottom: $border;
+          }
+        }
+      }
+    }
+  }
+}
