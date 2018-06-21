@@ -1,11 +1,11 @@
 {
-  "name": "ng2-finance",
+  "name": "crypto-finance",
   "version": "3.0.0",
   "description": "Finance dashboard using Yahoo's public APIs.",
   "author": "Marin Petkov <mpetkov>",
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/mpetkov/ng2-finance"
+    "url": "https://github.com/ayhmi/cryptoBinance"
   },
   "scripts": {
     "ng": "ng",

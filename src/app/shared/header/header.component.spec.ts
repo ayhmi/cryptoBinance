@@ -58,7 +58,7 @@ describe('HeaderComponent', () => {
   });
 
   it('should have a title', () => {
-    expect(fixture.nativeElement.querySelector('.mdl-layout-title').textContent).toBe('Ng2 Finance');
+    expect(fixture.nativeElement.querySelector('.mdl-layout-title').textContent).toBe('Crypto Finance');
   });
 
   it('should initialize property `sidebar` with boolean value `false`', () => {

@@ -24,7 +24,7 @@ after_success:
     - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
 after_failure:
-  - cat /home/travis/build/mpetkov/ng2-finance/npm-debug.log
+  - cat /home/travis/build/mpetkov/crypto-finance/npm-debug.log
 
 notifications:
   email:
