@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, timer } from 'rxjs';
 import { Router } from '@angular/router';
 import { GlobalVariable } from '../shared/globals';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
@@ -94,7 +94,7 @@ export class AuthenticationService {
         var now = Date.now();
         if (now < expire && !this.timer)
         {
-            this.timer = Observable.timer(expire - now);
+            this.timer = timer(expire - now);
             this.sub = this.timer.subscribe(() => this.logout());
         }
     }
