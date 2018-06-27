@@ -8,13 +8,8 @@ import {AuthGuard} from '../guards/index';
 
 import {HeaderComponent} from './header/header.component';
 import {NavigationComponent} from './navigation/navigation.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {ChartsComponent} from './charts/charts.component';
-import {ProfileComponent} from './profile/profile.component';
+import {OrderComponent} from './order/order.component';
 
-import {UserReportService} from "../services/userreport.service";
-import {UserFiltersService} from "../services/userfilters.service";
-import {UserProfileService} from "../services/userprofile.service";
 
 @NgModule({
   imports: [
@@ -24,17 +19,12 @@ import {UserProfileService} from "../services/userprofile.service";
   ],
   declarations: [
     PagesComponent,
-    DashboardComponent,
-    ChartsComponent,
-    ProfileComponent,
+    OrderComponent,
     HeaderComponent,
     NavigationComponent
   ],
   providers: [
-    AuthGuard,
-    UserReportService,
-    UserFiltersService,
-    UserProfileService
+    AuthGuard
   ]
 })
 export class PagesModule {
