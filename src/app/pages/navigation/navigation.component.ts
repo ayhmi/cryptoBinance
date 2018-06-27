@@ -17,17 +17,8 @@ export class NavigationItem {
 export class NavigationComponent implements OnInit {
   navItems: NavigationItem[] =
   [
-    new NavigationItem("#/pages/dashboard", {},"icon-home", "Dashboard", true,[]),
-    new NavigationItem("#/pages/items", {},"icon-layers", "Items", false,[]),
-    new NavigationItem("javascript:;", {},"icon-list", "Products", false,
-                     [
-                        new SubMenuItem("#/pages/product/list", "icon-eye","View", false),
-                        new SubMenuItem("#/pages/product/edit", "icon-pencil","Edit", false)
-                     ]),
-    new NavigationItem("#/pages/charts", {},"icon-chart", "Charts", false,[]),
-    new NavigationItem("#/pages/reports", {},"icon-doc", "Reports", false,[]),
-    new NavigationItem("#/pages/settings", {},"icon-settings", "Settings", false,[]),
-    new NavigationItem("#/pages/profile", {},"icon-user", "Profile", false,[])
+    new NavigationItem("#/pages/BTCUSDT", {},"icon-home", "BTCUSDT", true,[]),
+    new NavigationItem("#/pages/ETHBTC", {},"icon-layers", "ETHBTC", false,[])
   ];
 
    constructor(private sanitizer: DomSanitizer) { }
