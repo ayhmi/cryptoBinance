@@ -1,6 +1,6 @@
-import { browser, by, element } from 'protractor';
+import { browser, element, by } from 'protractor/globals';
 
-export class AppPage {
+export class CoreUIPage {
   navigateTo() {
     return browser.get('/');
   }

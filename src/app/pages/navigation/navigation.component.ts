@@ -15,13 +15,11 @@ export class NavigationItem {
 })
 
 export class NavigationComponent implements OnInit {
-  navItems: NavigationItem[] =
-  [
-    new NavigationItem("#/pages/BTCUSDT", {},"icon-home", "BTCUSDT", true,[]),
-    new NavigationItem("#/pages/ETHBTC", {},"icon-layers", "ETHBTC", false,[])
-  ];
+  private navItems: NavigationItem[] = [];
 
-   constructor(private sanitizer: DomSanitizer) { }
+   constructor(private sanitizer: DomSanitizer) { 
+    this.navItems.push(new NavigationItem("#/pages/BTCUSDT", {},"icon-home", "BTCUSDT", true,[]));
+   }
 
    ngOnInit() {
       this.navItems.forEach(page => {
