@@ -4,6 +4,7 @@ import {ExchangeInfo} from "../model/binance";
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class BinanceService {
@@ -22,7 +23,7 @@ export class BinanceService {
   }
 
   private static handleError(error: Response) {
-    console.log("ERROR OCCURED:" + error.statusText);
+    console.log("ERROR OCCURED:", error);
     return Observable.throw(error.statusText);
   }
 }

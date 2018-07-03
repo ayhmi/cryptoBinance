@@ -40,6 +40,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
+import {HttpModule} from "@angular/http";
+
+import { BinanceService } from './services/binance.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -52,7 +56,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    HttpModule
   ],
   declarations: [
     AppComponent,
@@ -65,7 +70,9 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+    },
+    BinanceService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
