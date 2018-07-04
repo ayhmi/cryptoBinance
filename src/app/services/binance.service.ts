@@ -9,7 +9,7 @@ import 'rxjs/add/observable/throw';
 @Injectable()
 export class BinanceService {
 
-  private apiUrl = 'https://api.binance.com/' + 'api/v1/';
+  private apiUrl = '/api/v1/';
 
   constructor(private http: Http) {
   }

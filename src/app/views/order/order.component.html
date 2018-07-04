@@ -1,12 +1,16 @@
 <div class="animated fadeIn">
   <div class="card-columns cols-2">
-    <div class="card">
-      <div class="card-header">
-        Order
+
+    <ng-container *ngFor="let symbol of exchangeInfo?.symbols">
+      <div class="card">
+        <div class="card-header">
+          {{symbol.symbol}}
+        </div>
+        <div class="card-body">
+          {{symbol.status}}
+        </div>
       </div>
-      <div class="card-body">
-        Orders
-      </div>
-    </div>
+    </ng-container>  
+
   </div>
 </div>
