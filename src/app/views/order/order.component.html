@@ -1,16 +1,74 @@
 <div class="animated fadeIn">
-  <div class="card-columns cols-2">
-
-    <ng-container *ngFor="let symbol of exchangeInfo?.symbols">
-      <div class="card">
-        <div class="card-header">
-          {{symbol.symbol}}
-        </div>
-        <div class="card-body">
-          {{symbol.status}}
-        </div>
-      </div>
-    </ng-container>  
-
-  </div>
+  <ng-container *ngFor="let symbol of exchangeInfo?.symbols">
+    <div class="row">
+      <div class="col-md-6 mb-4">
+        <!-- Nav tabs -->
+        <div class="card">
+          <div class="card-header">
+            {{symbol.symbol}}
+          </div>
+          <tabset>
+            <tab heading="Limit">
+              <form action="" method="post" class="form-horizontal">
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label">Price</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="price">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label">Amount</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="amount">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label">Total</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="total">
+                  </div>
+                </div>
+              </form>
+            </tab>
+            <tab heading="Market">
+                Market
+            </tab>
+            <tab heading="Stop-Limit">
+                Stop-Limit
+            </tab>
+          </tabset>
+          <tabset>
+              <tab heading="Limit">
+                <form action="" method="post" class="form-horizontal">
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label">Price</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" placeholder="price">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label">Amount</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" placeholder="amount">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label">Total</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" placeholder="total">
+                    </div>
+                  </div>
+                </form>
+              </tab>
+              <tab heading="Market">
+                  Market
+              </tab>
+              <tab heading="Stop-Limit">
+                  Stop-Limit
+              </tab>
+            </tabset>
+          </div>
+      </div><!--/.col-->
+    </div><!--/.row-->
+  </ng-container>
 </div>
