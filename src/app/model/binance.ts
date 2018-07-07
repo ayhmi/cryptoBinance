@@ -31,3 +31,8 @@ export class ExchangeInfo {
   exchangeFilters: FilterInfo[];
   symbols: SymbolInfo[];
 }
+
+export class Ticker {
+  symbol: string;
+  price: number;
+}
