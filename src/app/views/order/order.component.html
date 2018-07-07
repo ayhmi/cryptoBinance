@@ -29,45 +29,53 @@
                   </div>
                 </div>
               </form>
+              <button type="button" class="btn btn-block btn-success active" aria-pressed="true">Buy</button>
+              <button type="button" class="btn btn-block btn-danger active" aria-pressed="true">Sell</button>
             </tab>
             <tab heading="Market">
-                Market
-            </tab>
-            <tab heading="Stop-Limit">
-                Stop-Limit
-            </tab>
-          </tabset>
-          <tabset>
-              <tab heading="Limit">
                 <form action="" method="post" class="form-horizontal">
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Price</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" placeholder="price">
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label">Amount</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder="amount">
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Amount</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" placeholder="amount">
+                  </form>
+                  <button type="button" class="btn btn-block btn-success active" aria-pressed="true">Buy</button>
+                  <button type="button" class="btn btn-block btn-danger active" aria-pressed="true">Sell</button>
+                </tab>
+            <tab heading="Stop-Limit">
+                <form action="" method="post" class="form-horizontal">
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label">Stop</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder="stop">
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Total</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" placeholder="total">
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label">Limit</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" placeholder="limit">
+                        </div>
+                      </div>
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label">Amount</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder="amount">
+                      </div>
                     </div>
-                  </div>
-                </form>
-              </tab>
-              <tab heading="Market">
-                  Market
-              </tab>
-              <tab heading="Stop-Limit">
-                  Stop-Limit
-              </tab>
-            </tabset>
-          </div>
+                    <div class="form-group row">
+                      <label class="col-md-3 col-form-label">Total</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder="total">
+                      </div>
+                    </div>
+                  </form>
+                  <button type="button" class="btn btn-block btn-success active" aria-pressed="true">Buy</button>
+                  <button type="button" class="btn btn-block btn-danger active" aria-pressed="true">Sell</button>
+                </tab>
+          </tabset>
+        </div>
       </div><!--/.col-->
     </div><!--/.row-->
   </ng-container>
