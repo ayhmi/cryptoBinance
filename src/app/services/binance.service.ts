@@ -60,6 +60,58 @@ export class BinanceService {
       .catch(BinanceService.handleError);
   }
 
+  orderMarket(symbol:string, side:string, quantity:number): Observable<Ticker> {
+    let headers = new Headers();
+    let objDate:number;
+    let url:string;
+    let parameters:string;
+    let encryptedMsg:string;
+    headers.append('Content-Type', 'application/json;charset=UTF-8');
+    headers.append('X-MBX-APIKEY', this.apiKey);
+    objDate = Date.now();
+    url = this.apiUrl + 'v3/order/test?'
+    parameters = 'symbol=' + symbol;
+    parameters = parameters + '&side=' + side;
+    parameters = parameters + '&type=' + 'MARKET';
+    parameters = parameters + '&quantity=' + quantity;
+    parameters = parameters + '&timestamp=' + objDate;
+    parameters = parameters + '&recvWindow=5000';
+    encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
+    parameters = parameters + '&signature=' + encryptedMsg;
+
+    console.log(url + parameters);
+    return this.http.post(url + parameters, { headers })
+      .map(response => response.json())
+      .catch(BinanceService.handleError);
+  }
+
+  orderStopLimit(symbol:string, side:string, quantity:number, stopPrice:number, price:number): Observable<Ticker> {
+    let headers = new Headers();
+    let objDate:number;
+    let url:string;
+    let parameters:string;
+    let encryptedMsg:string;
+    headers.append('Content-Type', 'application/json;charset=UTF-8');
+    headers.append('X-MBX-APIKEY', this.apiKey);
+    objDate = Date.now();
+    url = this.apiUrl + 'v3/order/test?'
+    parameters = 'symbol=' + symbol;
+    parameters = parameters + '&side=' + side;
+    parameters = parameters + '&type=' + 'STOP_LOSS_LIMIT';
+    parameters = parameters + '&quantity=' + quantity;
+    parameters = parameters + '&timestamp=' + objDate;
+    parameters = parameters + '&price=' + price;
+    parameters = parameters + '&stopPrice=' + stopPrice;
+    parameters = parameters + '&recvWindow=5000';
+    encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
+    parameters = parameters + '&signature=' + encryptedMsg;
+    
+    console.log(url + parameters);
+    return this.http.post(url + parameters, { headers })
+      .map(response => response.json())
+      .catch(BinanceService.handleError);
+  }
+
   private static handleError(error: Response) {
     console.log("ERROR OCCURED:", error);
     return Observable.throw(error.statusText);

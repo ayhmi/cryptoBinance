@@ -38,7 +38,7 @@
                 </div>
               </form>
               <button type="button" class="btn btn-block btn-success active" aria-pressed="true" (click)="orderLimitBuy()">Buy</button>
-              <button type="button" class="btn btn-block btn-danger active" aria-pressed="true">Sell</button>
+              <button type="button" class="btn btn-block btn-danger active" aria-pressed="true" (click)="orderLimitSell()">Sell</button>
             </tab>
             <tab heading="Market">
                 <form action="" method="post" class="form-horizontal">
@@ -53,8 +53,8 @@
                       </div>
                     </div>
                   </form>
-                  <button type="button" class="btn btn-block btn-success active" aria-pressed="true">Buy</button>
-                  <button type="button" class="btn btn-block btn-danger active" aria-pressed="true">Sell</button>
+                  <button type="button" class="btn btn-block btn-success active" aria-pressed="true" (click)="orderMarketBuy()">Buy</button>
+                  <button type="button" class="btn btn-block btn-danger active" aria-pressed="true" (click)="orderMarketSell()">Sell</button>
                 </tab>
             <tab heading="Stop-Limit">
                 <form action="" method="post" class="form-horizontal">
@@ -83,8 +83,8 @@
                       </div>
                     </div>
                   </form>
-                  <button type="button" class="btn btn-block btn-success active" aria-pressed="true">Buy</button>
-                  <button type="button" class="btn btn-block btn-danger active" aria-pressed="true">Sell</button>
+                  <button type="button" class="btn btn-block btn-success active" aria-pressed="true" (click)="orderStopLimitBuy()">Buy</button>
+                  <button type="button" class="btn btn-block btn-danger active" aria-pressed="true" (click)="orderStopLimitSell()">Sell</button>
                 </tab>
           </tabset>
         </div>

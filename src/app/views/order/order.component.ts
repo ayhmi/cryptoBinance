@@ -18,6 +18,7 @@ export class OrderComponent implements OnInit {
     this.price = 0.0;
     this.amount = 0.0;
     this.total = 0.0;
+    this.stop = 0.0;
     this.binanceService.getExchangeInfo()
       .subscribe(exchangeInfo => {
         this.exchangeInfo = exchangeInfo;
@@ -50,5 +51,30 @@ export class OrderComponent implements OnInit {
   public orderLimitBuy()
   {
     this.binanceService.orderLimit(this.currentSymbol, 'BUY', this.amount, this.price);
+  }
+
+  public orderLimitSell()
+  {
+    this.binanceService.orderLimit(this.currentSymbol, 'SELL', this.amount, this.price);
+  }
+
+  public orderMarketBuy()
+  {
+    this.binanceService.orderMarket(this.currentSymbol, 'BUY', this.amount);
+  }
+
+  public orderMarketSell()
+  {
+    this.binanceService.orderMarket(this.currentSymbol, 'SELL', this.amount);
+  }
+
+  public orderStopLimitBuy()
+  {
+    this.binanceService.orderStopLimit(this.currentSymbol, 'BUY', this.amount, this.stop, this.price);
+  }
+
+  public orderStopLimitSell()
+  {
+    this.binanceService.orderStopLimit(this.currentSymbol, 'SELL', this.amount, this.stop, this.price);
   }
 }
