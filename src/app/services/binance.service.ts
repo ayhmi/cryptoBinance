@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http, RequestOptions, Response, Headers} from "@angular/http";
-import {ExchangeInfo, Ticker} from "../model/binance";
+import {ExchangeInfo, Ticker, AccountInfo} from "../model/binance";
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -33,7 +33,27 @@ export class BinanceService {
       .catch(BinanceService.handleError);
   }
 
-  orderLimit(symbol:string, side:string, quantity:number, price:number): Observable<Ticker> {
+  account(): Observable<AccountInfo> {
+    let headers = new Headers();
+    let objDate:number;
+    let url:string;
+    let parameters:string;
+    let encryptedMsg:string;
+    headers.append('Content-Type', 'application/json;charset=UTF-8');
+    headers.append('X-MBX-APIKEY', this.apiKey);
+    objDate = Date.now();
+    url = this.apiUrl + 'v3/account?'
+    parameters = parameters + 'timestamp=' + objDate;
+    parameters = parameters + '&recvWindow=5000';
+    encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
+    parameters = parameters + '&signature=' + encryptedMsg;
+    console.log(url + parameters);
+    return this.http.get(url + parameters, { headers })
+      .map(response => response.json())
+      .catch(BinanceService.handleError);
+  }
+
+  orderLimit(symbol:string, side:string, quantity:number, price:number): void {
     let headers = new Headers();
     let objDate:number;
     let url:string;
@@ -55,12 +75,12 @@ export class BinanceService {
     parameters = parameters + '&signature=' + encryptedMsg;
 
     console.log(url + parameters);
-    return this.http.post(url + parameters, { headers })
+    this.http.post(url + parameters, { headers })
       .map(response => response.json())
       .catch(BinanceService.handleError);
   }
 
-  orderMarket(symbol:string, side:string, quantity:number): Observable<Ticker> {
+  orderMarket(symbol:string, side:string, quantity:number): void {
     let headers = new Headers();
     let objDate:number;
     let url:string;
@@ -80,12 +100,12 @@ export class BinanceService {
     parameters = parameters + '&signature=' + encryptedMsg;
 
     console.log(url + parameters);
-    return this.http.post(url + parameters, { headers })
+    this.http.post(url + parameters, { headers })
       .map(response => response.json())
       .catch(BinanceService.handleError);
   }
 
-  orderStopLimit(symbol:string, side:string, quantity:number, stopPrice:number, price:number): Observable<Ticker> {
+  orderStopLimit(symbol:string, side:string, quantity:number, stopPrice:number, price:number): void {
     let headers = new Headers();
     let objDate:number;
     let url:string;
@@ -107,7 +127,7 @@ export class BinanceService {
     parameters = parameters + '&signature=' + encryptedMsg;
     
     console.log(url + parameters);
-    return this.http.post(url + parameters, { headers })
+    this.http.post(url + parameters, { headers })
       .map(response => response.json())
       .catch(BinanceService.handleError);
   }

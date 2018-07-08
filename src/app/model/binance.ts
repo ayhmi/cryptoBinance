@@ -36,3 +36,20 @@ export class Ticker {
   symbol: string;
   price: number;
 }
+
+export class BalanceInfo {
+  asset: string;
+  free: string;
+  locked: string;
+}
+
+export class AccountInfo {
+  makerCommission: number;
+  takerCommission: number;
+  buyerCommission: number;
+  canTrade: boolean;
+  canWithdraw: boolean;
+  canDeposit: boolean;
+  updateTime: number;
+  balances: BalanceInfo[];
+}
