@@ -21,23 +21,23 @@
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label">Price</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" value="{{price}}">
+                    <input type="text" class="form-control" value="{{price}}" [(ngModel)]="price" name="price">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label">Amount</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" value="{{amount}}" [(ngModel)]="amount" name="amount">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label">Total</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" value="{{total}}" [(ngModel)]="total" name="total">
                   </div>
                 </div>
               </form>
-              <button type="button" class="btn btn-block btn-success active" aria-pressed="true">Buy</button>
+              <button type="button" class="btn btn-block btn-success active" aria-pressed="true" (click)="orderLimitBuy()">Buy</button>
               <button type="button" class="btn btn-block btn-danger active" aria-pressed="true">Sell</button>
             </tab>
             <tab heading="Market">
@@ -49,7 +49,7 @@
                       </div>
                               <label class="col-md-3 col-form-label">Amount</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" value="{{amount}}" [(ngModel)]="amount" name="amount">
                       </div>
                     </div>
                   </form>
@@ -61,25 +61,25 @@
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label">Stop</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" value="{{price}}">
+                        <input type="text" class="form-control" value="{{stop}}" [(ngModel)]="stop" name="stop">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label">Limit</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" value="{{price}}">
+                          <input type="text" class="form-control" value="{{price}}" [(ngModel)]="price" name="price">
                         </div>
                       </div>
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label">Amount</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" value="{{amount}}" [(ngModel)]="amount" name="amount">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-md-3 col-form-label">Total</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" value="{{total}}" [(ngModel)]="total" name="total">
                       </div>
                     </div>
                   </form>

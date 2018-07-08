@@ -9,10 +9,15 @@ export class OrderComponent implements OnInit {
   private exchangeInfo: ExchangeInfo;
   private currentSymbol: string;
   private price: number;
+  private amount: number;
+  private total: number;
+  private stop: number;
   constructor(private binanceService: BinanceService) {}
 
   ngOnInit() {
     this.price = 0.0;
+    this.amount = 0.0;
+    this.total = 0.0;
     this.binanceService.getExchangeInfo()
       .subscribe(exchangeInfo => {
         this.exchangeInfo = exchangeInfo;
@@ -35,9 +40,15 @@ export class OrderComponent implements OnInit {
     this.binanceService.getTicker(this.currentSymbol)
       .subscribe(ticker => {
         this.price = ticker.price;
+        this.stop = this.price;
       },
     err => {
         console.log(err);
     });
+  }
+
+  public orderLimitBuy()
+  {
+    this.binanceService.orderLimit(this.currentSymbol, 'BUY', this.amount, this.price);
   }
 }
