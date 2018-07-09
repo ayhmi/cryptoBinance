@@ -55,7 +55,7 @@ export class BinanceService {
     headers.append('X-MBX-APIKEY', this.apiKey);
     objDate = Date.now();
     url = this.apiUrl + 'v3/account?'
-    parameters = parameters + 'timestamp=' + objDate;
+    parameters = 'timestamp=' + objDate;
     parameters = parameters + '&recvWindow=5000';
     encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
     parameters = parameters + '&signature=' + encryptedMsg;
@@ -76,7 +76,7 @@ export class BinanceService {
       headers.append('Content-Type', 'application/json;charset=UTF-8');
       headers.append('X-MBX-APIKEY', this.apiKey);
       objDate = Date.now();
-      url = this.apiUrl + 'v3/order/test?'
+      url = this.apiUrl + 'v3/order?'
       parameters = 'symbol=' + symbol;
       parameters = parameters + '&side=' + side;
       parameters = parameters + '&type=' + 'LIMIT';
@@ -106,7 +106,7 @@ export class BinanceService {
       headers.append('Content-Type', 'application/json;charset=UTF-8');
       headers.append('X-MBX-APIKEY', this.apiKey);
       objDate = Date.now();
-      url = this.apiUrl + 'v3/order/test?'
+      url = this.apiUrl + 'v3/order?'
       parameters = 'symbol=' + symbol;
       parameters = parameters + '&side=' + side;
       parameters = parameters + '&type=' + 'MARKET';
@@ -134,7 +134,7 @@ export class BinanceService {
       headers.append('Content-Type', 'application/json;charset=UTF-8');
       headers.append('X-MBX-APIKEY', this.apiKey);
       objDate = Date.now();
-      url = this.apiUrl + 'v3/order/test?'
+      url = this.apiUrl + 'v3/order?'
       parameters = 'symbol=' + symbol;
       parameters = parameters + '&side=' + side;
       parameters = parameters + '&type=' + 'STOP_LOSS_LIMIT';

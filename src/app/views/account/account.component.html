@@ -3,7 +3,7 @@
           <div class="col-md-6 mb-4">
               <div class="card">
                 <div class="card-header">
-                  Account
+                  Account Keys
                 </div>
                 <div class="card-body">
                   <form action="" method="post" class="form-horizontal">
@@ -21,35 +21,59 @@
                   </div>
                   <button type="button" class="btn btn-block btn-success active" aria-pressed="true" (click)="setApiKey()">Set</button>
                   <button type="button" class="btn btn-block btn-danger active" aria-pressed="true" (click)="resetApiKey()">Reset</button>
-                  <label class="col-md-6 col-form-label">makerCommission</label>
-                  <div class="col-md-9">
+                </form>
+              </div>
+          </div>
+        </div>
+  </div><!--/.row-->
+</div>
+<div class="animated fadeIn" *ngIf="accountInfo">
+  <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+              <div class="card-header">
+                Account Info
+              </div>
+              <div class="card-body">
+                <label class="col-md-6 col-form-label">makerCommission</label>
+                  <div class="col-md-6">
                     <p class="form-control-static">{{accountInfo.makerCommission}}</p>
                   </div>
                   <label class="col-md-6 col-form-label">takerCommission</label>
-                  <div class="col-md-9">
+                  <div class="col-md-6">
                     <p class="form-control-static">{{accountInfo.takerCommission}}</p>
                   </div>
                   <label class="col-md-6 col-form-label">buyerCommission</label>
-                  <div class="col-md-9">
+                  <div class="col-md-6">
                     <p class="form-control-static">{{accountInfo.buyerCommission}}</p>
                   </div>
                   <label class="col-md-6 col-form-label">canTrade</label>
-                  <div class="col-md-9">
+                  <div class="col-md-6">
                     <p class="form-control-static">{{accountInfo.canTrade}}</p>
                   </div>
                   <label class="col-md-6 col-form-label">canWithdraw</label>
-                  <div class="col-md-9">
+                  <div class="col-md-6">
                     <p class="form-control-static">{{accountInfo.canWithdraw}}</p>
                   </div>
                   <label class="col-md-6 col-form-label">canDeposit</label>
-                  <div class="col-md-9">
+                  <div class="col-md-6">
                     <p class="form-control-static">{{accountInfo.canDeposit}}</p>
                   </div>
                   <label class="col-md-6 col-form-label">updateTime</label>
-                  <div class="col-md-9">
+                  <div class="col-md-6">
                     <p class="form-control-static">{{accountInfo.updateTime}}</p>
                   </div>
-            </form>
+                  <ng-container *ngFor="let balance of accountInfo?.balances">
+                    <div *ngIf="(balance.free > 0) || (balance.locked > 0)">
+                      <label class="col-md-3 col-form-label">{{balance.asset}}</label>
+                      <div class="col-md-6">
+                        <p class="form-control-static">{{balance.free}} free</p>
+                      </div>
+                      <div class="col-md-6">
+                        <p class="form-control-static">{{balance.locked}} locked</p>
+                      </div>
+                    </div>
+                  </ng-container>
                 </div>
             </div>
           </div>
