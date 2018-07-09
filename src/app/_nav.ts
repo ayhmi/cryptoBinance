@@ -1,5 +1,10 @@
 export const navItems = [
   {
+    name: 'Account',
+    url: '/account',
+    icon: 'icon-speedometer',
+  },
+  {
     name: 'Order',
     url: '/order',
     icon: 'icon-pencil'

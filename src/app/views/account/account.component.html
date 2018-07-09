@@ -1,0 +1,57 @@
+<div class="animated fadeIn">
+    <div class="row">
+          <div class="col-md-6 mb-4">
+              <div class="card">
+                <div class="card-header">
+                  Account
+                </div>
+                <div class="card-body">
+                  <form action="" method="post" class="form-horizontal">
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label">apiKey</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" value="{{apiKey}}" [(ngModel)]="apiKey" name="apiKey">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-md-3 col-form-label">secretKey</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" value="{{secretKey}}" [(ngModel)]="secretKey" name="secretKey">
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-block btn-success active" aria-pressed="true" (click)="setApiKey()">Set</button>
+                  <button type="button" class="btn btn-block btn-danger active" aria-pressed="true" (click)="resetApiKey()">Reset</button>
+                  <label class="col-md-6 col-form-label">makerCommission</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">{{accountInfo.makerCommission}}</p>
+                  </div>
+                  <label class="col-md-6 col-form-label">takerCommission</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">{{accountInfo.takerCommission}}</p>
+                  </div>
+                  <label class="col-md-6 col-form-label">buyerCommission</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">{{accountInfo.buyerCommission}}</p>
+                  </div>
+                  <label class="col-md-6 col-form-label">canTrade</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">{{accountInfo.canTrade}}</p>
+                  </div>
+                  <label class="col-md-6 col-form-label">canWithdraw</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">{{accountInfo.canWithdraw}}</p>
+                  </div>
+                  <label class="col-md-6 col-form-label">canDeposit</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">{{accountInfo.canDeposit}}</p>
+                  </div>
+                  <label class="col-md-6 col-form-label">updateTime</label>
+                  <div class="col-md-9">
+                    <p class="form-control-static">{{accountInfo.updateTime}}</p>
+                  </div>
+            </form>
+                </div>
+            </div>
+          </div>
+    </div><!--/.row-->
+</div>

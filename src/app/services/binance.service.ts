@@ -9,10 +9,10 @@ import * as crypto from 'crypto-js';
 
 @Injectable()
 export class BinanceService {
-
+  private apiGiven:boolean = false;
   private apiUrl = '/api/';
-  private apiKey = 'vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A';
-  private secretKey = 'NhqPtmdSJYdKjVHjA7PZj4Mge3R5YNiP1e3UZjInClVN65XAbvqqM6A7H5fATj0j';
+  private apiKey = '';
+  private secretKey = '';
 
   constructor(private http: Http) {
   }
@@ -33,6 +33,18 @@ export class BinanceService {
       .catch(BinanceService.handleError);
   }
 
+  setApiKey(apiKey:string, secretKey:string): void {
+    this.apiKey = apiKey;
+    this.secretKey = secretKey;
+    this.apiGiven = true;
+  }
+  
+  resetApiKey(): void {
+    this.apiKey = '';
+    this.secretKey = '';
+    this.apiGiven = false;
+  }
+  
   account(): Observable<AccountInfo> {
     let headers = new Headers();
     let objDate:number;
@@ -54,82 +66,91 @@ export class BinanceService {
   }
 
   orderLimit(symbol:string, side:string, quantity:number, price:number): void {
-    let headers = new Headers();
-    let objDate:number;
-    let url:string;
-    let parameters:string;
-    let encryptedMsg:string;
-    headers.append('Content-Type', 'application/json;charset=UTF-8');
-    headers.append('X-MBX-APIKEY', this.apiKey);
-    objDate = Date.now();
-    url = this.apiUrl + 'v3/order/test?'
-    parameters = 'symbol=' + symbol;
-    parameters = parameters + '&side=' + side;
-    parameters = parameters + '&type=' + 'LIMIT';
-    parameters = parameters + '&quantity=' + quantity;
-    parameters = parameters + '&timestamp=' + objDate;
-    parameters = parameters + '&price=' + price;
-    parameters = parameters + '&timeInForce=GTC';
-    parameters = parameters + '&recvWindow=5000';
-    encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
-    parameters = parameters + '&signature=' + encryptedMsg;
-
-    console.log(url + parameters);
-    this.http.post(url + parameters, { headers })
-      .map(response => response.json())
-      .catch(BinanceService.handleError);
+    if (this.apiGiven == true)
+    {
+      let headers = new Headers();
+      let objDate:number;
+      let url:string;
+      let parameters:string;
+      let encryptedMsg:string;
+      headers.append('Content-Type', 'application/json;charset=UTF-8');
+      headers.append('X-MBX-APIKEY', this.apiKey);
+      objDate = Date.now();
+      url = this.apiUrl + 'v3/order/test?'
+      parameters = 'symbol=' + symbol;
+      parameters = parameters + '&side=' + side;
+      parameters = parameters + '&type=' + 'LIMIT';
+      parameters = parameters + '&quantity=' + quantity;
+      parameters = parameters + '&timestamp=' + objDate;
+      parameters = parameters + '&price=' + price;
+      parameters = parameters + '&timeInForce=GTC';
+      parameters = parameters + '&recvWindow=5000';
+      encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
+      parameters = parameters + '&signature=' + encryptedMsg;
+  
+      console.log(url + parameters);
+      this.http.post(url + parameters, { headers })
+        .map(response => response.json())
+        .catch(BinanceService.handleError);
+      }
   }
 
   orderMarket(symbol:string, side:string, quantity:number): void {
-    let headers = new Headers();
-    let objDate:number;
-    let url:string;
-    let parameters:string;
-    let encryptedMsg:string;
-    headers.append('Content-Type', 'application/json;charset=UTF-8');
-    headers.append('X-MBX-APIKEY', this.apiKey);
-    objDate = Date.now();
-    url = this.apiUrl + 'v3/order/test?'
-    parameters = 'symbol=' + symbol;
-    parameters = parameters + '&side=' + side;
-    parameters = parameters + '&type=' + 'MARKET';
-    parameters = parameters + '&quantity=' + quantity;
-    parameters = parameters + '&timestamp=' + objDate;
-    parameters = parameters + '&recvWindow=5000';
-    encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
-    parameters = parameters + '&signature=' + encryptedMsg;
-
-    console.log(url + parameters);
-    this.http.post(url + parameters, { headers })
-      .map(response => response.json())
-      .catch(BinanceService.handleError);
+    if (this.apiGiven == true)
+    {
+      let headers = new Headers();
+      let objDate:number;
+      let url:string;
+      let parameters:string;
+      let encryptedMsg:string;
+      headers.append('Content-Type', 'application/json;charset=UTF-8');
+      headers.append('X-MBX-APIKEY', this.apiKey);
+      objDate = Date.now();
+      url = this.apiUrl + 'v3/order/test?'
+      parameters = 'symbol=' + symbol;
+      parameters = parameters + '&side=' + side;
+      parameters = parameters + '&type=' + 'MARKET';
+      parameters = parameters + '&quantity=' + quantity;
+      parameters = parameters + '&timestamp=' + objDate;
+      parameters = parameters + '&recvWindow=5000';
+      encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
+      parameters = parameters + '&signature=' + encryptedMsg;
+  
+      console.log(url + parameters);
+      this.http.post(url + parameters, { headers })
+        .map(response => response.json())
+        .catch(BinanceService.handleError);
+      }
   }
 
   orderStopLimit(symbol:string, side:string, quantity:number, stopPrice:number, price:number): void {
-    let headers = new Headers();
-    let objDate:number;
-    let url:string;
-    let parameters:string;
-    let encryptedMsg:string;
-    headers.append('Content-Type', 'application/json;charset=UTF-8');
-    headers.append('X-MBX-APIKEY', this.apiKey);
-    objDate = Date.now();
-    url = this.apiUrl + 'v3/order/test?'
-    parameters = 'symbol=' + symbol;
-    parameters = parameters + '&side=' + side;
-    parameters = parameters + '&type=' + 'STOP_LOSS_LIMIT';
-    parameters = parameters + '&quantity=' + quantity;
-    parameters = parameters + '&timestamp=' + objDate;
-    parameters = parameters + '&price=' + price;
-    parameters = parameters + '&stopPrice=' + stopPrice;
-    parameters = parameters + '&recvWindow=5000';
-    encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
-    parameters = parameters + '&signature=' + encryptedMsg;
-    
-    console.log(url + parameters);
-    this.http.post(url + parameters, { headers })
-      .map(response => response.json())
-      .catch(BinanceService.handleError);
+    if (this.apiGiven == true)
+    {
+      let headers = new Headers();
+      let objDate:number;
+      let url:string;
+      let parameters:string;
+      let encryptedMsg:string;
+      headers.append('Content-Type', 'application/json;charset=UTF-8');
+      headers.append('X-MBX-APIKEY', this.apiKey);
+      objDate = Date.now();
+      url = this.apiUrl + 'v3/order/test?'
+      parameters = 'symbol=' + symbol;
+      parameters = parameters + '&side=' + side;
+      parameters = parameters + '&type=' + 'STOP_LOSS_LIMIT';
+      parameters = parameters + '&quantity=' + quantity;
+      parameters = parameters + '&timestamp=' + objDate;
+      parameters = parameters + '&price=' + price;
+      parameters = parameters + '&stopPrice=' + stopPrice;
+      parameters = parameters + '&recvWindow=5000';
+      encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
+      parameters = parameters + '&signature=' + encryptedMsg;
+      
+      console.log(url + parameters);
+      this.http.post(url + parameters, { headers })
+        .map(response => response.json())
+        .catch(BinanceService.handleError);
+      }
   }
 
   private static handleError(error: Response) {
