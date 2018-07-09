@@ -8,7 +8,7 @@ export const navItems = [
     name: 'Order',
     url: '/order',
     icon: 'icon-pencil'
-  },
+  }/*,
   {
     name: 'Dashboard',
     url: '/dashboard',
@@ -224,5 +224,5 @@ export const navItems = [
         icon: 'icon-star'
       }
     ]
-  }
+  }*/
 ];
