@@ -6,12 +6,12 @@ import { ExchangeInfo, SymbolInfo } from "../../model/binance";
   templateUrl: 'order.component.html'
 })
 export class OrderComponent implements OnInit {
-  private exchangeInfo: ExchangeInfo;
-  private currentSymbol: string;
-  private price: number;
-  private amount: number;
-  private total: number;
-  private stop: number;
+  exchangeInfo: ExchangeInfo;
+  currentSymbol: string;
+  price: number;
+  amount: number;
+  total: number;
+  stop: number;
   constructor(private binanceService: BinanceService) {}
 
   ngOnInit() {

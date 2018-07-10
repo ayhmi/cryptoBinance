@@ -6,9 +6,9 @@ import { AccountInfo } from "../../model/binance";
   templateUrl: 'account.component.html'
 })
 export class AccountComponent implements OnInit {
-  private accountInfo: AccountInfo;
-  private apiKey: string;
-  private secretKey: string;
+  accountInfo: AccountInfo;
+  apiKey: string;
+  secretKey: string;
   constructor(private binanceService: BinanceService) {}
 
   ngOnInit() {
