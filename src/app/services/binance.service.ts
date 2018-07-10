@@ -66,7 +66,7 @@ export class BinanceService {
   }
 
   orderLimit(symbol:string, side:string, quantity:number, price:number): void {
-    if (this.apiGiven == true)
+    //if (this.apiGiven == true)
     {
       let headers = new Headers();
       let objDate:number;
@@ -89,8 +89,8 @@ export class BinanceService {
       parameters = parameters + '&signature=' + encryptedMsg;
   
       console.log(url + parameters);
-      this.http.post(url + parameters, { headers })
-        .map(response => response.json())
+      this.http.post(url + parameters, '', { headers }).toPromise()
+        .then(response => response.json())
         .catch(BinanceService.handleError);
       }
   }
@@ -117,8 +117,8 @@ export class BinanceService {
       parameters = parameters + '&signature=' + encryptedMsg;
   
       console.log(url + parameters);
-      this.http.post(url + parameters, { headers })
-        .map(response => response.json())
+      this.http.post(url + parameters, { headers }).toPromise()
+        .then(response => response.json())
         .catch(BinanceService.handleError);
       }
   }
@@ -147,8 +147,8 @@ export class BinanceService {
       parameters = parameters + '&signature=' + encryptedMsg;
       
       console.log(url + parameters);
-      this.http.post(url + parameters, { headers })
-        .map(response => response.json())
+      this.http.post(url + parameters, { headers }).toPromise()
+        .then(response => response.json())
         .catch(BinanceService.handleError);
       }
   }
