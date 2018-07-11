@@ -3,7 +3,8 @@ import { BinanceService } from "../../services/binance.service"
 import { ExchangeInfo, SymbolInfo } from "../../model/binance";
 
 @Component({
-  templateUrl: 'order.component.html'
+  templateUrl: 'order.component.html',
+  styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
   exchangeInfo: ExchangeInfo;

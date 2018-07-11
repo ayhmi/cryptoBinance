@@ -37,8 +37,17 @@
                   </div>
                 </div>
               </form>
-              <button type="button" class="btn btn-block btn-success active" aria-pressed="true" (click)="orderLimitBuy()">Buy</button>
-              <button type="button" class="btn btn-block btn-danger active" aria-pressed="true" (click)="orderLimitSell()">Sell</button>
+              <button type="button" class="btn btn-success active buy-button" aria-pressed="true" (click)="orderLimitBuy()">
+                  <div class="hidden" style="display:none;">
+                    <a href="https://icons8.com">Icon pack by Icons8</a>
+                  </div>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEhSURBVDhP1dOhS4NBHMbxd860pmkmLYLFYDHKgmlxgqBF/wKxCOuGwdLSXLAoE+0uTNSylYEmi9kq2BwoCu77vO8Ojntvx6sg4gMfdvfb3Y/3bnuj38giLsYqKkzIKvaTYTjzaOESH1iAL1U8JMNsyeMFe/EsnW83VM5wlQxT+VHDbbzj2uMQW07N6GIZqcziE18eNWiT7zspw5s+7IVv40+7oU7hrinAG92Vu7AB0/ARcziFWXeLiXGPpWZTUL0INVvDK8waPUQwT3Cb5qC4zWQFwTRhb5AjbGJo1eQZOkEw67A3hRwjUw4wwH3ACWbwN9Gv2cM5plWwsgu9hhvxLGN2YO5pSQUrd1D9Jp5ljO6mjTrMX8ZEr1kHpXj2jxJFI81ocDY4x4CbAAAAAElFTkSuQmCC">
+                Buy
+              </button>
+              <button type="button" class="btn btn-danger active sell-button" aria-pressed="true" (click)="orderLimitSell()">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEwSURBVDhPvdS7SgNRFEbh0UQFI4ogiKWdCAFBH8ALWCgBWystbDTETrCx8YKVoI3Y2HgBsbEQkoCNVongpRDLvIvr39tgMhgcZyALPtjnQELmzEyCdpdCAQ+4wjgStYNTjCKHJ8wido/o99Eaw6WP8Spj0Ecri3Mf41XBgI/WBG58jNcadI71LpDoDHvwCl32JEpIlG5IFcOYxh268e+6cAD9umVtfLeFd+TRoY2oHWIXaVs11ws95Cu2itg93vDSwgeOELkZDPlo6YEe8dHSmzPl499t4gyNZ7SNRR8t3Rjd8QVbtUgHrbuoB1d/Co2Fv1BloFfzFkvaCFfDNeZs1dxvX6g2cIxnW4VaxT46bfVT/fL0wXB6Tk8wb6uI6Q0p4hN92kiaznMP67Zqb0HwBaNZLhYkygg2AAAAAElFTkSuQmCC">
+                Sell
+              </button>
             </tab>
             <tab heading="Market">
                 <form action="" method="post" class="form-horizontal">
