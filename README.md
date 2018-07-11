@@ -1,18 +1,22 @@
+# cryptoBinance
+
 This project helps you to order crypto trading in binance with apiKey and secretKey. 
 
-Run 'npm start' for development tests.
+## Usage
+
+Run 'npm start' for development tests. Production mode is not currently supported.
+
+Open Account page to enter apiKey and secretKey inputs.
 
 ![](Account.png)
 
+Place your orders by selecting the symbol from left and entering the necessary fields from right.
+
 ![](Order.png)
-
-# cryptoBinance
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve --proxy-config proxy.conf.json` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
