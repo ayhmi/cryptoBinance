@@ -2,6 +2,10 @@ This project helps you to order crypto trading in binance with apiKey and secret
 
 Run 'npm start' for development tests.
 
+![](Account.png)
+
+![](Order.png)
+
 # cryptoBinance
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
