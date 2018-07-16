@@ -30,7 +30,7 @@ export class AccountComponent implements OnInit {
       //console.log(err);
     });
   }
-  
+
   resetApiKey(): void {
     this.binanceService.resetApiKey();
   }

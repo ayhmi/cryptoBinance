@@ -4,6 +4,7 @@
   background-color: #99ccff!important;
   color: black!important;
   border-color: grey!important;
+  position: inherit;
 }
 
 .sell-button{
@@ -13,9 +14,40 @@
   color: black!important;
   border-color: grey!important;
   position: absolute;
+  float:right;
   right: 17px;
 }
 
 .btn{
   font-weight: bold!important;
+}
+
+.page-colums{
+  display: inline-block;
+  float: left;
+}
+
+.orders-container{
+  border-color: grey;
+  border-width: thin;
+  width: auto;
+  height:auto;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+th, td {
+  font-family: sans-serif;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.cancel-order-button{
+  /* display:none; */
+  width: 20px;
+  height: 20px;
 }
