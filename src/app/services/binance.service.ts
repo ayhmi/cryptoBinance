@@ -42,7 +42,6 @@ export class BinanceService {
     return this.http.get(url + parameters, { headers })
       .map(response => response.json())
       .catch(BinanceService.handleError);
-
   }
 
   cancelSingleOrder(symbol:string, orderId:number): Observable<{}> {
