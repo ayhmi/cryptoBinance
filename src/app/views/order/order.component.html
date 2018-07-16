@@ -1,93 +1,177 @@
 <div class="animated fadeIn">
-    <div class="row">
-          <div class="col-md-6 mb-4">
-              <div class="card">
-                <div class="card-header">
-                  Symbols
-                </div>
-                  <ng-container *ngFor="let symbol of exchangeInfo?.symbols">
-                    <button type="button" class="btn btn-primary" (click)="setCurrentSymbol(symbol.symbol)">{{symbol.symbol}}</button>
-                  </ng-container>
-              </div>
-          </div>
-      <div class="col-md-6 mb-4">
+  <div class="col-md-4 mb-4 page-colums">
+    <div class="row row1">
+      <div class="col-md mb-4">
         <div class="card">
           <div class="card-header">
-            {{currentSymbol}}
+            Symbols
           </div>
-          <tabset>
-            <tab heading="Limit">
-              <form action="" method="post" class="form-horizontal">
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label">Price</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" value="{{price}}" [(ngModel)]="price" name="price">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label">Amount</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" value="{{amount}}" [(ngModel)]="amount" name="amount">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label class="col-md-3 col-form-label">Total</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" value="{{total}}" [(ngModel)]="total" name="total">
-                  </div>
-                </div>
-              </form>
-              <button type="button" class="btn btn-block btn-success active" aria-pressed="true" (click)="orderLimitBuy()">Buy</button>
-              <button type="button" class="btn btn-block btn-danger active" aria-pressed="true" (click)="orderLimitSell()">Sell</button>
-            </tab>
-            <tab heading="Market">
-                <form action="" method="post" class="form-horizontal">
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label">Price</label>
-                      <div class="col-md-9">
-                        <p class="form-control-static">{{price}}</p>
-                      </div>
-                              <label class="col-md-3 col-form-label">Amount</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" value="{{amount}}" [(ngModel)]="amount" name="amount">
-                      </div>
-                    </div>
-                  </form>
-                  <button type="button" class="btn btn-block btn-success active" aria-pressed="true" (click)="orderMarketBuy()">Buy</button>
-                  <button type="button" class="btn btn-block btn-danger active" aria-pressed="true" (click)="orderMarketSell()">Sell</button>
-                </tab>
-            <tab heading="Stop-Limit">
-                <form action="" method="post" class="form-horizontal">
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label">Stop</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" value="{{stop}}" [(ngModel)]="stop" name="stop">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label">Limit</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" value="{{price}}" [(ngModel)]="price" name="price">
-                        </div>
-                      </div>
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label">Amount</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" value="{{amount}}" [(ngModel)]="amount" name="amount">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-md-3 col-form-label">Total</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" value="{{total}}" [(ngModel)]="total" name="total">
-                      </div>
-                    </div>
-                  </form>
-                  <button type="button" class="btn btn-block btn-success active" aria-pressed="true" (click)="orderStopLimitBuy()">Buy</button>
-                  <button type="button" class="btn btn-block btn-danger active" aria-pressed="true" (click)="orderStopLimitSell()">Sell</button>
-                </tab>
-          </tabset>
+          <select id="order-select-picker" class="form-control" #selectedElem (change)="setCurrentSymbol(selectedElem.value)" [ngModel]="exchangeInfo?.symbols">
+            <option *ngFor="let symbol of exchangeInfo?.symbols" [ngValue]="symbol.symbol">
+              {{symbol.symbol}}
+            </option>
+          </select>
         </div>
+      </div>
+    </div><!--/.row1-->
+    <div class="row row2">
+      <div class="col-md mb-4">
+        <div class="card">
+        <div class="card-header">
+          {{currentSymbol}}
+        </div>
+        <tabset>
+          <tab heading="Limit">
+            <form action="" method="post" class="form-horizontal">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label">Price</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="{{price}}" [(ngModel)]="price" name="price">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label">Amount</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="{{amount}}" [(ngModel)]="amount" name="amount">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label">Total</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="{{total}}" [(ngModel)]="total" name="total">
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-md">
+                <button type="button" class="btn btn-success active buy-button" aria-pressed="true" (click)="orderLimitBuy()">
+                  <div class="hidden" style="display:none;">
+                    <a href="https://icons8.com">Icon pack by Icons8</a>
+                  </div>
+                  <img src={{buyPNG}}>
+                  Buy
+                </button>
+              </div>
+              <div class="col-md">
+                <button type="button" class="btn btn-danger active sell-button" aria-pressed="true" (click)="orderLimitSell()">
+                  <img src={{sellPNG}}>
+                  Sell
+                </button>
+              </div>
+            </div>
+          </tab>
+          <tab heading="Market">
+            <form action="" method="post" class="form-horizontal">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label">Price</label>
+                <div class="col-md-9">
+                  <p class="form-control-static">{{price}}</p>
+                </div>
+                <label class="col-md-3 col-form-label">Amount</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="{{amount}}" [(ngModel)]="amount" name="amount">
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-md">
+                <button type="button" class="btn btn-block btn-success active buy-button" aria-pressed="true" (click)="orderMarketBuy()">
+                  <img src={{buyPNG}}>
+                  Buy
+                </button>
+              </div>
+              <div class="col-md-3">
+                <button type="button" class="btn btn-block btn-danger active sell-button" aria-pressed="true" (click)="orderMarketSell()">
+                  <img src={{sellPNG}}>
+                  Sell
+                </button>
+              </div>
+            </div>
+          </tab>
+          <tab heading="Stop-Limit">
+            <form action="" method="post" class="form-horizontal">
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label">Stop</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="{{stop}}" [(ngModel)]="stop" name="stop">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label">Limit</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="{{price}}" [(ngModel)]="price" name="price">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label">Amount</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="{{amount}}" [(ngModel)]="amount" name="amount">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-md-3 col-form-label">Total</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" value="{{total}}" [(ngModel)]="total" name="total">
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-md">
+                <button type="button" class="btn btn-block btn-success active buy-button" aria-pressed="true" (click)="orderStopLimitBuy()">
+                  <img src={{buyPNG}}>
+                  Buy
+                </button>
+              </div>
+              <div class="col-md">
+                <button type="button" class="btn btn-block btn-danger active sell-button" aria-pressed="true" (click)="orderStopLimitSell()">
+                  <img src={{sellPNG}}>
+                  Sell
+                </button>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
       </div><!--/.col-->
-    </div><!--/.row-->
+
+    </div><!--/.row2-->
+  </div>
+  <div class="col-md-8 mb-4 page-colums">
+    <div class="row ">
+      <!-- <div class="orders-container card col-md mb-4"> -->
+        <div class="card-header">
+          Order List
+        </div>
+        <table id="matrix" class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>symbol</th>
+              <th>side</th>
+              <th>type</th>
+              <th>origQty</th>
+              <th>price</th>
+              <th>stopPrice</th>
+              <th>cancel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let order of orderInfo">
+              <tr>
+                <td>{{order.symbol}}</td>
+                <td>{{order.side}}</td>
+                <td>{{order.type}}</td>
+                <td>{{order.origQty}}</td>
+                <td>{{order.price}}</td>
+                <td>{{order.stopPrice}}</td>
+                <td>
+                  <img src={{trashIcon}} (click)="cancelSingleOrder(order.symbol, order.orderId)">
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      <!-- </div> --> <!-- card div -->
+    </div>
+  </div>
+
 </div>

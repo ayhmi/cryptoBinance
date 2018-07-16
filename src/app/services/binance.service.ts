@@ -1,12 +1,11 @@
 import {Injectable} from "@angular/core";
 import {Http, RequestOptions, Response, Headers} from "@angular/http";
-import {ExchangeInfo, Ticker, AccountInfo} from "../model/binance";
+import {ExchangeInfo, Ticker, AccountInfo, OrderInfo} from "../model/binance";
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import * as crypto from 'crypto-js';
-
+import * as crypto from 'crypto-js'
 @Injectable()
 export class BinanceService {
   private apiGiven:boolean = false;
@@ -25,6 +24,52 @@ export class BinanceService {
       .catch(BinanceService.handleError);
   }
 
+  getOrderInfo(): Observable<OrderInfo>{
+    let headers = new Headers();
+    let objDate:number;
+    let url:string;
+    let parameters:string;
+    let encryptedMsg:string;
+    this.apiKey = 'QAP9mJe59cbLIQFF42huj3XzejcoP0TFxGhrRucLS9GCDC20sngbzKKs6XBcY1HC';
+    this.secretKey = 'iNr70EDVFkYB1PsUaNbgyRxiXpwnJUXwOsCjJ1wo2QeVtmx4LCCepwFaNSr6wmSl';
+
+    headers.append('Content-Type', 'application/json;charset=UTF-8');
+    headers.append('X-MBX-APIKEY', this.apiKey);
+    objDate = Date.now();
+    url = this.apiUrl + 'v3/openOrders?'
+    parameters = 'timestamp=' + objDate;
+    parameters = parameters + '&recvWindow=5000';
+    encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
+    parameters = parameters + '&signature=' + encryptedMsg;
+    console.log(url + parameters);
+    return this.http.get(url + parameters, { headers })
+      .map(response => response.json())
+      .catch(BinanceService.handleError);
+
+  }
+
+  cancelSingleOrder(symbol:string, orderId:number): Observable<{}> {
+    this.apiKey = 'QAP9mJe59cbLIQFF42huj3XzejcoP0TFxGhrRucLS9GCDC20sngbzKKs6XBcY1HC';
+    this.secretKey = 'iNr70EDVFkYB1PsUaNbgyRxiXpwnJUXwOsCjJ1wo2QeVtmx4LCCepwFaNSr6wmSl';
+    let headers = new Headers();
+    let objDate:number;
+    let url:string;
+    let parameters:string;
+    let encryptedMsg:string;
+    headers.append('Content-Type', 'application/json;charset=UTF-8');
+    headers.append('X-MBX-APIKEY', this.apiKey);
+    objDate = Date.now();
+    url = this.apiUrl + 'v3/order?'
+    parameters = 'timestamp=' + objDate;
+    parameters = parameters + '&symbol='+symbol;
+    parameters = parameters + '&orderId='+orderId;
+    encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
+    parameters = parameters + '&signature=' + encryptedMsg;
+    console.log(url + parameters);
+    return this.http.delete(url + parameters, { headers })
+      .map(response => response.json())
+  }
+
   getTicker(symbol:string): Observable<Ticker> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json;charset=UTF-8');
@@ -38,13 +83,13 @@ export class BinanceService {
     this.secretKey = secretKey;
     this.apiGiven = true;
   }
-  
+
   resetApiKey(): void {
     this.apiKey = '';
     this.secretKey = '';
     this.apiGiven = false;
   }
-  
+
   account(): Observable<AccountInfo> {
     let headers = new Headers();
     let objDate:number;
@@ -87,7 +132,7 @@ export class BinanceService {
       parameters = parameters + '&recvWindow=5000';
       encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
       parameters = parameters + '&signature=' + encryptedMsg;
-  
+
       console.log(url + parameters);
       this.http.post(url + parameters, '', { headers }).toPromise()
         .then(response => response.json())
@@ -115,7 +160,7 @@ export class BinanceService {
       parameters = parameters + '&recvWindow=5000';
       encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
       parameters = parameters + '&signature=' + encryptedMsg;
-  
+
       console.log(url + parameters);
       this.http.post(url + parameters, { headers }).toPromise()
         .then(response => response.json())
@@ -145,7 +190,7 @@ export class BinanceService {
       parameters = parameters + '&recvWindow=5000';
       encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
       parameters = parameters + '&signature=' + encryptedMsg;
-      
+
       console.log(url + parameters);
       this.http.post(url + parameters, { headers }).toPromise()
         .then(response => response.json())

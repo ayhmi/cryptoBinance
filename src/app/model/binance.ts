@@ -6,6 +6,23 @@ export class FilterInfo {
   minNotional: number;
 }
 
+export class OrderInfo {
+  symbol: string;
+  orderId: number;
+  clientOrderId: string;
+  price: number;
+  origQty: number;
+  executedQty: number;
+  status: string;
+  timeInForce: string;
+  type: string;
+  side: string;
+  stopPrice: number;
+  icebergQty: number;
+  time: number;
+  isWorking: string; //boolean??
+}
+
 export class SymbolInfo {
   symbol: string;
   status: string;
