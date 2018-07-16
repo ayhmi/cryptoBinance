@@ -30,7 +30,6 @@ export class BinanceService {
     let url:string;
     let parameters:string;
     let encryptedMsg:string;
-
     headers.append('Content-Type', 'application/json;charset=UTF-8');
     headers.append('X-MBX-APIKEY', this.apiKey);
     objDate = Date.now();
