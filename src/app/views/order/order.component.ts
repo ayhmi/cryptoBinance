@@ -28,6 +28,14 @@ export class OrderComponent implements OnInit {
     this.amount = 0.0;
     this.total = 0.0;
     this.stop = 0.0;
+    this.updateExchangeInfo();
+    this.updateOrderList();
+    this.sellPNG = sellbase64;
+    this.buyPNG =  buybase64;
+    this.trashIcon =  trashIcon;
+  }
+
+  public updateExchangeInfo() {
     this.binanceService.getExchangeInfo()
       .subscribe(exchangeInfo => {
         this.exchangeInfo = exchangeInfo;
@@ -37,10 +45,6 @@ export class OrderComponent implements OnInit {
     err => {
         console.log(err);
     });
-    this.updateOrderList();
-    this.sellPNG = sellbase64;
-    this.buyPNG =  buybase64;
-    this.trashIcon =  trashIcon;
   }
 
   public updateOrderList() {
