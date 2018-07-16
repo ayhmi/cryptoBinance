@@ -30,9 +30,6 @@ export class BinanceService {
     let url:string;
     let parameters:string;
     let encryptedMsg:string;
-    this.apiKey = 'QAP9mJe59cbLIQFF42huj3XzejcoP0TFxGhrRucLS9GCDC20sngbzKKs6XBcY1HC';
-    this.secretKey = 'iNr70EDVFkYB1PsUaNbgyRxiXpwnJUXwOsCjJ1wo2QeVtmx4LCCepwFaNSr6wmSl';
-
     headers.append('Content-Type', 'application/json;charset=UTF-8');
     headers.append('X-MBX-APIKEY', this.apiKey);
     objDate = Date.now();
@@ -49,8 +46,6 @@ export class BinanceService {
   }
 
   cancelSingleOrder(symbol:string, orderId:number): Observable<{}> {
-    this.apiKey = 'QAP9mJe59cbLIQFF42huj3XzejcoP0TFxGhrRucLS9GCDC20sngbzKKs6XBcY1HC';
-    this.secretKey = 'iNr70EDVFkYB1PsUaNbgyRxiXpwnJUXwOsCjJ1wo2QeVtmx4LCCepwFaNSr6wmSl';
     let headers = new Headers();
     let objDate:number;
     let url:string;
