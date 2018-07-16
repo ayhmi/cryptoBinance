@@ -43,7 +43,7 @@ export class OrderComponent implements OnInit {
     this.trashIcon =  trashIcon;
   }
 
-  puclic updateOrderList() {
+  public updateOrderList() {
     this.binanceService.getOrderInfo()
       .subscribe(orderInfo => {
         this.orderInfo = orderInfo;
@@ -54,8 +54,7 @@ export class OrderComponent implements OnInit {
   }
 
   public setCurrentSymbol(symbolName) {
-    symbolName = symbolName.split(' ')
-    console.log(symbolName[symbolName.length - 1])
+    symbolName = symbolName.split(' ');
     this.currentSymbol = symbolName[symbolName.length - 1];
     this.updatePrice();
   }
@@ -63,8 +62,8 @@ export class OrderComponent implements OnInit {
   public cancelSingleOrder(symbol, orderId) {
     this.binanceService.cancelSingleOrder(symbol, orderId)
       .subscribe(resp => {
-        this.updateOrderList()
-        console.log(resp)
+        this.updateOrderList();
+        console.log(resp);
       });
   }
 
