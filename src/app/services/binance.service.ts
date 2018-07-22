@@ -104,7 +104,7 @@ export class BinanceService {
       .catch(BinanceService.handleError);
   }
 
-  orderLimit(symbol:string, side:string, quantity:number, price:number): void {
+  orderLimit(symbol:string, side:string, quantity:number, price:number): Observable<{}> {
     //if (this.apiGiven == true)
     {
       let headers = new Headers();
@@ -128,13 +128,13 @@ export class BinanceService {
       parameters = parameters + '&signature=' + encryptedMsg;
 
       console.log(url + parameters);
-      this.http.post(url + parameters, '', { headers }).toPromise()
-        .then(response => response.json())
+      return this.http.post(url + parameters, '', { headers })
+        .map(response => response.json())
         .catch(BinanceService.handleError);
       }
   }
 
-  orderMarket(symbol:string, side:string, quantity:number): void {
+  orderMarket(symbol:string, side:string, quantity:number): Observable<{}> {
     if (this.apiGiven == true)
     {
       let headers = new Headers();
@@ -156,13 +156,13 @@ export class BinanceService {
       parameters = parameters + '&signature=' + encryptedMsg;
 
       console.log(url + parameters);
-      this.http.post(url + parameters, { headers }).toPromise()
-        .then(response => response.json())
+      return this.http.post(url + parameters, { headers })
+        .map(response => response.json())
         .catch(BinanceService.handleError);
       }
   }
 
-  orderStopLimit(symbol:string, side:string, quantity:number, stopPrice:number, price:number): void {
+  orderStopLimit(symbol:string, side:string, quantity:number, stopPrice:number, price:number): Observable<{}> {
     if (this.apiGiven == true)
     {
       let headers = new Headers();
@@ -180,14 +180,15 @@ export class BinanceService {
       parameters = parameters + '&quantity=' + quantity;
       parameters = parameters + '&timestamp=' + objDate;
       parameters = parameters + '&price=' + price;
+      parameters = parameters + '&timeInForce=GTC';
       parameters = parameters + '&stopPrice=' + stopPrice;
       parameters = parameters + '&recvWindow=5000';
       encryptedMsg = crypto.HmacSHA256(parameters, this.secretKey);
       parameters = parameters + '&signature=' + encryptedMsg;
 
       console.log(url + parameters);
-      this.http.post(url + parameters, { headers }).toPromise()
-        .then(response => response.json())
+      return this.http.post(url + parameters, { headers })
+        .map(response => response.json())
         .catch(BinanceService.handleError);
       }
   }

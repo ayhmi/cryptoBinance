@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BinanceService } from "../../services/binance.service"
-import { ExchangeInfo, SymbolInfo, OrderInfo } from "../../model/binance";
+import { ExchangeInfo, SymbolInfo, OrderInfo, AccountInfo } from "../../model/binance";
 
 var trashIcon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHGSURBVDhPrVXNSgJRGL1B9SQVbaLCBxAdlcrRjbrwZytu1XkHXRrYI/gIZW40hNTCP4rUTWbQqKCrslBsYffoTI12tTE8cPDyfd89XL/7nTtkER4cjs1ro/Egp9OdgDc63X5Bo9mQ0uqRMZl2SxZL4s5ma9S93q4YCAzAR7pGDLlbjtuRyudjRMha0Ww+q7rd7ddQaNSPRJhEruZytQo8H8Ueafs0xmI8nxCDwXeWCItNQehR0UumaJ6eTBSED9bGRWwGgxCNSjIToGc1j6fN2qCGFY+nlTMYtiU5QspWa/wtHJ4qGsRio2EyORUDEUNOGUNPyxZLfCyGMbi32xvKAnCYSo2Az3T6O4Y1gJyyFsTtj0cqw3GHTz5fd7YAlAXwq1yzajFSmFOS0+uPXwKBPqsIlIWAeWIgNKC1UsEsxx0RWKu+yr+MRtKGPs8W/PtSgCIdm1mrLTs2RXlsABgd3lQWLcOK09nKarVbktwEsA+1kWofy6SvUI++AaeSzA9gcBhd9PtVi0KsxPPnC18cnLTqcv35fKEmT082V0wJ9APexM3RcehgxkD62HYQoxdw8atnanCl1a7TYd2TPwFYIyalGSDkC/PmcxffPnpJAAAAAElFTkSuQmCC";
 var sellbase64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEwSURBVDhPvdS7SgNRFEbh0UQFI4ogiKWdCAFBH8ALWCgBWystbDTETrCx8YKVoI3Y2HgBsbEQkoCNVongpRDLvIvr39tgMhgcZyALPtjnQELmzEyCdpdCAQ+4wjgStYNTjCKHJ8wido/o99Eaw6WP8Spj0Ecri3Mf41XBgI/WBG58jNcadI71LpDoDHvwCl32JEpIlG5IFcOYxh268e+6cAD9umVtfLeFd+TRoY2oHWIXaVs11ws95Cu2itg93vDSwgeOELkZDPlo6YEe8dHSmzPl499t4gyNZ7SNRR8t3Rjd8QVbtUgHrbuoB1d/Co2Fv1BloFfzFkvaCFfDNeZs1dxvX6g2cIxnW4VaxT46bfVT/fL0wXB6Tk8wb6uI6Q0p4hN92kiaznMP67Zqb0HwBaNZLhYkygg2AAAAAElFTkSuQmCC";
@@ -8,11 +8,12 @@ var buybase64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNi
 
 @Component({
   templateUrl: 'order.component.html',
-  styleUrls: ['./order.component.css']
+  styleUrls: ['./order.component.css'],
 })
 export class OrderComponent implements OnInit {
   exchangeInfo: ExchangeInfo;
   orderInfo: OrderInfo;
+  accountInfo: AccountInfo;
   currentSymbol: string;
   price: number;
   amount: number;
@@ -33,14 +34,26 @@ export class OrderComponent implements OnInit {
     this.sellPNG = sellbase64;
     this.buyPNG =  buybase64;
     this.trashIcon =  trashIcon;
+    // this.balance = balances
+  }
+
+  public getAccountInfo() {
+    this.binanceService.account()
+      .subscribe(accountInfo => {
+        this.accountInfo = accountInfo;
+      },
+    err => {
+        console.log(err);
+    });
   }
 
   public updateExchangeInfo() {
     this.binanceService.getExchangeInfo()
       .subscribe(exchangeInfo => {
         this.exchangeInfo = exchangeInfo;
-        this.currentSymbol = exchangeInfo.symbols[0].symbol;
+        this.currentSymbol = exchangeInfo.symbols[9].symbol;
         this.updatePrice();
+        this.getAccountInfo()
       },
     err => {
         console.log(err);
@@ -61,13 +74,14 @@ export class OrderComponent implements OnInit {
     symbolName = symbolName.split(' ');
     this.currentSymbol = symbolName[symbolName.length - 1];
     this.updatePrice();
+    this.getAccountInfo()
   }
 
   public cancelSingleOrder(symbol, orderId) {
     this.binanceService.cancelSingleOrder(symbol, orderId)
       .subscribe(resp => {
         this.updateOrderList();
-        console.log(resp);
+        this.getAccountInfo()
       });
   }
 
@@ -83,26 +97,44 @@ export class OrderComponent implements OnInit {
   }
 
   public orderLimitBuy() {
-    this.binanceService.orderLimit(this.currentSymbol, 'BUY', this.amount, this.price);
+    this.binanceService.orderLimit(this.currentSymbol, 'BUY', this.amount, this.price)
+    .subscribe(resp => {
+      this.updateOrderList();
+    });
   }
 
   public orderLimitSell() {
-    this.binanceService.orderLimit(this.currentSymbol, 'SELL', this.amount, this.price);
+    this.binanceService.orderLimit(this.currentSymbol, 'SELL', this.amount, this.price)
+      .subscribe(resp => {
+        this.updateOrderList();
+      });
   }
 
   public orderMarketBuy() {
-    this.binanceService.orderMarket(this.currentSymbol, 'BUY', this.amount);
+    this.binanceService.orderMarket(this.currentSymbol, 'BUY', this.amount)
+    .subscribe(resp => {
+      this.updateOrderList();
+    });
   }
 
   public orderMarketSell() {
-    this.binanceService.orderMarket(this.currentSymbol, 'SELL', this.amount);
+    this.binanceService.orderMarket(this.currentSymbol, 'SELL', this.amount)
+    .subscribe(resp => {
+      this.updateOrderList();
+    });
   }
 
   public orderStopLimitBuy() {
-    this.binanceService.orderStopLimit(this.currentSymbol, 'BUY', this.amount, this.stop, this.price);
+    this.binanceService.orderStopLimit(this.currentSymbol, 'BUY', this.amount, this.stop, this.price)
+    .subscribe(resp => {
+      this.updateOrderList();
+    });
   }
 
   public orderStopLimitSell() {
-    this.binanceService.orderStopLimit(this.currentSymbol, 'SELL', this.amount, this.stop, this.price);
+    this.binanceService.orderStopLimit(this.currentSymbol, 'SELL', this.amount, this.stop, this.price)
+    .subscribe(resp => {
+      this.updateOrderList();
+    });
   }
 }

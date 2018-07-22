@@ -6,6 +6,7 @@ import { OrderRoutingModule } from './order-routing.module';
 import {CommonModule} from '@angular/common';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AmountButtonsComponent } from './amount-buttons/amount-buttons.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TabsModule,
     FormsModule
   ],
-  declarations: [ OrderComponent ]
+  declarations: [ OrderComponent, AmountButtonsComponent ]
 })
 export class OrderModule { }
