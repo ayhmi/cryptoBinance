@@ -51,3 +51,12 @@ th, td {
   width: 20px;
   height: 20px;
 }
+
+.col-form-label{
+  padding-right: 4px!important;
+}
+
+.order-input{
+  float: right!important;
+  width: 60%!important;
+}
