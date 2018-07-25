@@ -2,6 +2,10 @@
 
 This project helps you to order crypto trading in binance with apiKey and secretKey. 
 
+## Install
+
+'npm install'
+
 ## Usage
 
 Run 'npm start' for development tests. Production mode is not currently supported.
