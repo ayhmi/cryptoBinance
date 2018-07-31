@@ -17,7 +17,6 @@ export class OrderComponent implements OnInit {
   currentSymbol: string;
   price: number;
   amount: number;
-  total: number;
   stop: number;
   sellPNG: string;
   buyPNG: string;
@@ -27,7 +26,6 @@ export class OrderComponent implements OnInit {
   ngOnInit() {
     this.price = 0.0;
     this.amount = 0.0;
-    this.total = 0.0;
     this.stop = 0.0;
     this.updateExchangeInfo();
     this.updateOrderList();
